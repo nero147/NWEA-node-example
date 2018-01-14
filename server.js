@@ -5,27 +5,32 @@ var bodyParser = require('body-parser');
 var timeout = require('connect-timeout')
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-app.use(timeout('3s')); //kills the session with a timeout
+app.use(timeout('10s')); //kills the session with a timeout
 var port = process.env.PORT || 8080;
 
 // DB stuff here
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('db.sqlite');
-db.run("CREATE TABLE blogs (id integer primary key autoincrement, posts TEXT);");
+db.run("CREATE TABLE blogs (id integer primary key autoincrement, title TEXT, body TEXT);");
 
-// routes will go here
-app.get('/blog/get', function(req, res) {
-  var user_id = req.param('id');
-  var token = req.param('token');
-  var geo = req.param('geo');  
-
-  res.send(user_id + ' ' + token + ' ' + geo);
+// POST http://localhost:8080/posts
+app.get('/posts', function(req, res) {
+      db.all("SELECT id, title, body FROM blogs", [], (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        rows.forEach((row) => {
+            res.write(row.id + ' ' + row.title + ' ' + row.body + '\r');  
+        });
+        res.end()  
+    });
 });
-// POST http://localhost:8080/blog/post
+// POST http://localhost:8080/post
 // parameters sent with 
-app.post('/blog/post', function(req, res) {
-    var post = req.body.post;
-    var stmt = db.prepare("INSERT INTO blogs(posts) VALUES(?);", post);
+app.post('/post', function(req, res) {
+    var body = req.body.body;
+    var title = req.body.title;
+    var stmt = db.prepare("INSERT INTO blogs(body, title) VALUES(?, ?);", body, title);
     stmt.run();
     stmt.finalize();
 });
