@@ -59,6 +59,14 @@ Server started! At http://localhost:8080
 
 Now your docker container should be running. 
 
+## Deploying without Docker
+
+If you don't want to use docker you will need the latest version of node.js and npm installed, then you can just run the following
+```
+npm install
+node server.js
+```
+
 ## Testing Your Container
 
 You can test your API by running `GET` and `POST` commands from Postman. Just make sure that your post commands are using json (set the application type in the header) fields and that the keys are `body` and `title`. The endpoints are
