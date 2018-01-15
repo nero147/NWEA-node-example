@@ -16,14 +16,12 @@ var db = new sqlite3.Database('db.sqlite', sqlite3.OPEN__READWRITE);
 
 // POST http://localhost:8080/posts
 app.get('/posts', function(req, res) {
-      db.all("SELECT id, title, body FROM blogs", [], (err, rows) => {
+      db.all("SELECT post_id, title, body FROM blogs", [], (err, rows) => {
         if (err) {
             throw err;
         }
-        rows.forEach((row) => {
-            res.write(row.post_id + ' ' + row.title + ' ' + row.body + '\r');  
-        });
-        res.end()  
+        // Return the results
+        res.json(rows);
     });
 });
 // POST http://localhost:8080/post
