@@ -12,11 +12,11 @@ var port = process.env.PORT || 8080;
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('blog.db', sqlite3.OPEN__READWRITE);
 //The next is if you need to recreate the DB, but a base one is checked in
-//db.run("CREATE TABLE blogs (post_id integer primary key autoincrement, title TEXT, body TEXT);");
+//db.run("CREATE TABLE posts (post_id integer primary key autoincrement, title TEXT, body TEXT);");
 
 // POST http://localhost:8080/posts
 app.get('/posts', function(req, res) {
-      db.all("SELECT post_id, title, body FROM blogs", [], (err, rows) => {
+      db.all("SELECT post_id, title, body FROM posts", [], (err, rows) => {
         if (err) {
             throw err;
         }
@@ -29,7 +29,7 @@ app.get('/posts', function(req, res) {
 app.post('/post', function(req, res) {
     var body = req.body.body;
     var title = req.body.title;
-    var stmt = db.prepare("INSERT INTO blogs(body, title) VALUES(?, ?);", body, title);
+    var stmt = db.prepare("INSERT INTO posts(body, title) VALUES(?, ?);", body, title);
     stmt.run();
     stmt.finalize();
 });

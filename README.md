@@ -49,7 +49,7 @@ Step 9/9 : CMD npm start
 Removing intermediate container f2bb8d0bec96
 Successfully built 32854ee7ecfa
 ```
-After that you can run this command to create an image from the output Replace the first port number with whatever port you want to map to the docker container. I just mapped mine to 8080. the `-d` in the command means that it will run detached and not be tied to your current bash session. `sudo docker run -p -d <username>/node-blog-api` You should get some output like this
+After that you can run this command to create an image from the output Replace the first port number with whatever port you want to map to the docker container. I just mapped mine to 8080. the `-d` in the command means that it will run detached and not be tied to your current bash session. `sudo docker run -p 8080:8080 -d <username>/node-blog-api` You should get some output like this
 ```
 > docker_web_app@1.0.0 start /usr/src/app
 > node server.js
