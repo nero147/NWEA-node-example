@@ -1,7 +1,7 @@
 # NWEA-node-example
 ## Preliminaries
 
-This is deployed via docker, so it will require that you have docker installed. On Ubuntu/Debian this is done with `sudo apt-get install docker.io`, and on Mac OS you can do it via the DMG file you can grab [here](https://docs.docker.com/docker-for-mac/install/). The instructions for this are going to be for Ubuntu since that's most of what people are deploying to these days, but it is very similar for other environments as well.
+This is deployed via docker, so it will require that you have docker installed. On Ubuntu/Debian this is done with `sudo apt-get install docker.io`, and on Mac OS you can do it via the DMG file you can grab [here](https://docs.docker.com/docker-for-mac/install/). The instructions for this are going to be for Ubuntu since that's most of what people are deploying to these days, but it is very similar for other environments as well. The application is running node.js and the image is based off the latest node docker container.
 
 ##Create Docker Image
 To create the docker image run the following command and replace the <username> section with your username `sudo docker build -t <username>/node-blog-api`. You should get some output like this
