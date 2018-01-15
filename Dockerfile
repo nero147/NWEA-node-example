@@ -14,9 +14,6 @@ RUN npm install
 # If you are building your code for production
 # RUN npm install --only=production
 
-# Create a default copy of the database
-COPY db.sqlite.template db.sqlite
-
 # Bundle app source
 COPY . .
 

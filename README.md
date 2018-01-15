@@ -61,7 +61,7 @@ Now your docker container should be running.
 
 ## Testing Your Container
 
-You can test your API by running `GET` and `POST` commands from Postman. Just make sure that your post commands are using x-www-form-urlencoded fields and that the keys are `body` and `title`. The endpoints are
+You can test your API by running `GET` and `POST` commands from Postman. Just make sure that your post commands are using json (set the application type in the header) fields and that the keys are `body` and `title`. The endpoints are
 ```
 GET http://localhost:8080/posts
 POST http://localhost:8080/post
